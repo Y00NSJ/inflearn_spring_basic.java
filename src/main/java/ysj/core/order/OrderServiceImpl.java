@@ -2,6 +2,7 @@ package ysj.core.order;
 
 import ysj.core.discount.DiscountPolicy;
 import ysj.core.discount.FixDiscountPolicy;
+import ysj.core.discount.RateDiscountPolicy;
 import ysj.core.member.Member;
 import ysj.core.member.MemberRepository;
 import ysj.core.member.MemoryMemberRepository;
@@ -9,7 +10,8 @@ import ysj.core.member.MemoryMemberRepository;
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository = new MemoryMemberRepository();
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+//    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
