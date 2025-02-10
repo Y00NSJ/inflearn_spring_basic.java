@@ -1,14 +1,16 @@
 package ysj.core;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import ysj.core.member.Grade;
 import ysj.core.member.Member;
 import ysj.core.member.MemberService;
-import ysj.core.member.MemberServiceImpl;
 
 public class MemberApp {
     public static void main(String[] args) {
-        AppConfig appConfig = new AppConfig();
-        MemberService memberService = appConfig.memberService();
+
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class); //AppConfig 내 정보로 등록, 관리
+        MemberService memberService = applicationContext.getBean("memberService", MemberService.class);
 
         Member member = new Member(1L, "memberA", Grade.VIP);
         memberService.join(member);
